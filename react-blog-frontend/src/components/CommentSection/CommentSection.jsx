@@ -357,7 +357,7 @@ function CommentSection({ postId }) {
 
 // PropTypes for type checking the component's props
 CommentSection.propTypes = {
-  postId: PropTypes.number.isRequired, // postId is required and must be a number
+  postId: PropTypes.string.isRequired, // postId is required and must be a number
 };
 
 // Export the CommentSection component as the default export

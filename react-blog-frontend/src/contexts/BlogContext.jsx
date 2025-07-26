@@ -60,7 +60,6 @@ export function BlogProvider({ children }) {
 
         // Get API URL from environment variables
         const apiUrl = import.meta.env.VITE_API_URL;
-        console.log(apiUrl);
         // Throw error if API URL is not defined
         if (!apiUrl) throw new Error("API URL is not defined in .env");
 

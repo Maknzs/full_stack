@@ -302,6 +302,7 @@ function PostEditor({ post = {}, isDarkMode }) {
         {/* TagInput component for adding tags to the post  */}
         <TagInput
           tags={formData.tags} // passes the current tags from form data
+          onBlur={handleBlur}
           onChange={(tags) =>
             // Updates the formData state with new tags when they change
             setFormData((prev) => ({

@@ -226,14 +226,9 @@ function BlogPost({
       </button>
       {!isPreview && ( //Show like button, comments and social share icons if it's not a preview
         <>
-          <LikeButton
-            postId={Number(id)}
-            initialLikes={0}
-            isDarkMode={isDarkMode}
-          />{" "}
+          <LikeButton postId={id} initialLikes={0} isDarkMode={isDarkMode} />{" "}
           {/*Like button for the post*/}
-          <CommentSection postId={Number(id)} />{" "}
-          {/*Comment section for the post*/}
+          <CommentSection postId={id} /> {/*Comment section for the post*/}
           <div className={styles.socialShare}>
             {" "}
             {/*Social media sharing icons*/}
@@ -270,7 +265,7 @@ function BlogPost({
 
 // PropTypes for type checking the component's props
 BlogPost.propTypes = {
-  id: PropTypes.number.isRequired, //id is required and must be a number
+  id: PropTypes.string.isRequired, //id is required and must be a number
   title: PropTypes.string.isRequired, // title is required and must be a string
   content: PropTypes.string.isRequired, // content is required and must be a string
   author: PropTypes.string.isRequired, //author is required and must be a string

@@ -99,14 +99,8 @@ function BlogList({ isDarkMode, filteredPosts }) {
                 items={currentPosts}
                 renderItem={(post) => (
                   <BlogPost
-                    key={Number(post.id)}
-                    id={Number(post.id)}
-                    title={post.title}
-                    content={post.content}
-                    author={post.author}
-                    date={post.date}
-                    image={post.image}
-                    isPreview={post.isPreview}
+                    key={post.id}
+                    {...post}
                     isDarkMode={isDarkMode}
                     searchTerm={searchTerm}
                   />

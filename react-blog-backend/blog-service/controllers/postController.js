@@ -198,8 +198,8 @@ exports.updatePost = async (req, res) => {
 // 2. Implement the deletePost Function
 // Objective: Allow authorized users to delete a post and its associated data.
 exports.deletePost = async (req, res) => {
-  const id = req.params.id;
-
+  const { id } = req.params;
+  logger.info("Received request to delete a post", { id });
   // Use Post.findById(req.params.id) to find the post by ID from the database.
   // If the post is not found, return a 404 Not Found response with an appropriate message.
   const post = await Post.findById(id);
@@ -233,7 +233,7 @@ exports.deletePost = async (req, res) => {
     await cleanUpCategories();
 
     // Respond with a success message indicating the post and its associated data were deleted successfully.
-    logger.info("Post deleted successfully", { postId: id });
+    logger.info("Post deleted successfully", { postId: post._id });
     res
       .status(200)
       .json({ message: `Post with id:${id} deleted successfully` });
