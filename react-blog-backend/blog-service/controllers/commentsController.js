@@ -14,12 +14,12 @@ const Post = require("../models/Posts");
 // Handle errors by wrapping the logic in a try...catch block.
 // Return the fetched comments as a JSON response.
 exports.getAllComments = async (req, res) => {
-  const postId = req.params.id;
   try {
-    const allComments = await Comment.find({ post: postId }).populate(
-      "content author post"
+    const comments = await Comment.find({ post: req.params.id }).populate(
+      "author",
+      "name email"
     );
-    res.json({ allComments });
+    res.json(comments);
   } catch (error) {
     console.error("Error fetching comments:", error); // Detailed error logging
 
@@ -40,7 +40,8 @@ exports.getCommentById = async (req, res) => {
   const commentId = req.params.id;
   try {
     const chosenComment = await Comment.findById(commentId).populate(
-      "content author post"
+      "author",
+      "name email"
     );
     if (!chosenComment) {
       return res.status(404).json({ message: "Comment not found" });
@@ -107,11 +108,9 @@ exports.editCommentById = async (req, res) => {
       return res.status(404).json({ message: "Comment not found" });
     }
     if (req.user.id !== comment.author.toString()) {
-      return res
-        .status(403)
-        .json({
-          message: "You are not the Author. You may not edit this comment",
-        });
+      return res.status(403).json({
+        message: "You are not the Author. You may not edit this comment",
+      });
     }
     comment.content = req.body.content || comment.content;
     await comment.save();
@@ -143,11 +142,9 @@ exports.deleteCommentById = async (req, res) => {
       return res.status(404).json({ message: "Comment not found" });
     }
     if (req.user.id !== comment.author.toString()) {
-      return res
-        .status(403)
-        .json({
-          message: "You are not the Author. You may not edit this comment",
-        });
+      return res.status(403).json({
+        message: "You are not the Author. You may not edit this comment",
+      });
     }
     await Post.updateOne(
       { _id: comment.post },

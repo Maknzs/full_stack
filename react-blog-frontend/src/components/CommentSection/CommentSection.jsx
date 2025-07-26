@@ -118,6 +118,7 @@ function CommentSection({ postId }) {
 
   // Function to handle updating an existing comment
   const handleUpdateComment = async (e) => {
+    e.preventDefault();
     setLoading(true);
     try {
       // Retrieve the authentication token from localStorage. If the token is missing, alert the user.
@@ -154,18 +155,23 @@ function CommentSection({ postId }) {
       });
 
       if (!response.ok) {
-        throw new Error("Failed to update the comment. Please try again.");
+        const errorData = await response.json(); //Parse the error response as JSON
+        console.error("API Error Response:", errorData); //Log error to console
+        throw new Error(errorData.message || "Failed to update comment."); // Throw an error with a user-friendly message
       }
 
       // If successful, update the corresponding comment in the comments state to reflect the changes.
       const updatedComment = await response.json();
       setComments((prevComments) =>
         prevComments.map((comment) =>
-          comment._id === editComment._id
-            ? { ...comment, content: updatedComment.content }
+          comment._id === updatedComment.comment._id
+            ? updatedComment.comment
             : comment
         )
       );
+
+      setEditComment(null);
+      setNewComment("");
       alert("Comment updated successfully!");
 
       // Ensure error handling is robust, with clear messages for the user in case of failure.
@@ -173,8 +179,6 @@ function CommentSection({ postId }) {
       alert(error.message);
     } finally {
       // Clear the edit mode by resetting the editComment and newComment states.
-      setEditComment(null);
-      setNewComment("");
       setLoading(false);
     }
   };

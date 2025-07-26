@@ -219,3 +219,9 @@
 {"level":30,"time":1753536778804,"pid":552314,"hostname":"Mak-Desktop","msg":"Auth Service connected to MongoDB"}
 {"level":30,"time":1753537482072,"pid":559593,"hostname":"Mak-Desktop","msg":"Auth Service running on port 5001"}
 {"level":30,"time":1753537482657,"pid":559593,"hostname":"Mak-Desktop","msg":"Auth Service connected to MongoDB"}
+{"level":30,"time":1753541607830,"pid":734764,"hostname":"Mak-Desktop","msg":"Auth Service running on port 5001"}
+{"level":30,"time":1753541608364,"pid":734764,"hostname":"Mak-Desktop","msg":"Auth Service connected to MongoDB"}
+{"level":30,"time":1753548286230,"pid":783160,"hostname":"Mak-Desktop","msg":"Auth Service running on port 5001"}
+{"level":30,"time":1753548286871,"pid":783160,"hostname":"Mak-Desktop","msg":"Auth Service connected to MongoDB"}
+{"level":30,"time":1753548577948,"pid":786962,"hostname":"Mak-Desktop","msg":"Auth Service running on port 5001"}
+{"level":30,"time":1753548578501,"pid":786962,"hostname":"Mak-Desktop","msg":"Auth Service connected to MongoDB"}
